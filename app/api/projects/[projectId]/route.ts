@@ -19,3 +19,20 @@ export async function GET(request: Request, { params }: { params: Promise<{ proj
     return NextResponse.json({ error: 'Error fetching project' }, { status: 500 });
   }
 }
+
+export async function PATCH(request: Request, { params }: { params: Promise<{ projectId: string }> }) {
+  const { projectId } = await params;
+  const body = await request.json();
+  const { savedData } = body;
+
+  try {
+    const project = await prisma.project.update({
+      where: { id: projectId },
+      data: { savedData },
+    });
+    return NextResponse.json(project);
+  } catch (error) {
+    console.error("Error updating project", error);
+    return NextResponse.json({ error: 'Error updating project' }, { status: 500 });
+  }
+}

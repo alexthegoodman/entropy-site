@@ -18,7 +18,15 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const projects = await prisma.project.findMany();
+    const projects = await prisma.project.findMany({
+      select: {
+        id: true,
+        name: true,
+        path: true,
+        createdAt: true,
+        updatedAt: true,
+      }
+    });
     return NextResponse.json(projects);
   } catch (error) {
     return NextResponse.json({ error: 'Error fetching projects' }, { status: 500 });
