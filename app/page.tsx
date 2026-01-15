@@ -17,9 +17,12 @@ export default function Home() {
   return (
     <>
       <section className="home-hero mb-16">
-        <div className="w-6xl m-auto">
+        <div className="flex flex-col w-6xl m-auto">
           <h1 className="text-[124px] leading-tight font-black">Please, don&apos;t start from scratch</h1>
           <h2 className="text-[74px] font-extrabold">Build your <em>FPS-RPG</em> with Entropy instead</h2>
+          <a href="/demo" target="_blank">Try Demo</a>
+          <a href="https://github.com/alexthegoodman/entropy-engine" target="_blank">View Source</a>
+          <a href="https://youtu.be/nGlPvrEAGPA?si=lxC6W2Zd2DJ-g65f" target="_blank">Watch Video</a>
         </div>
       </section>
 
