@@ -258,5 +258,74 @@ export const tools: any[] = [
         required: ["type", "position"],
       },
     },
+  },
+  {
+    type: "function",
+    function: {
+      name: "generateHeightmap",
+      description: "Generates a new procedural heightmap landscape based on noise and features.",
+      parameters: {
+        type: "object",
+        properties: {
+          seed: {
+            type: "number",
+            description: "Random seed for the noise generator.",
+          },
+          scale: {
+            type: "number",
+            description: "Scale of the base noise. Default is 100.0.",
+          },
+          persistence: {
+            type: "number",
+            description: "Persistence of the noise octaves. Default is 0.5.",
+          },
+          lacunarity: {
+            type: "number",
+            description: "Lacunarity of the noise octaves. Default is 2.0.",
+          },
+          features: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                type: {
+                  type: "string",
+                  enum: ["Mountain", "Valley", "Plateau", "Ridge"],
+                  description: "Type of terrain feature.",
+                },
+                center: {
+                  type: "array",
+                  items: { type: "number" },
+                  description: "Center [x, y] normalized (0.0-1.0).",
+                },
+                radius: {
+                  type: "number",
+                  description: "Radius normalized (0.0-1.0).",
+                },
+                intensity: {
+                  type: "number",
+                  description: "Height multiplier.",
+                },
+                falloff: {
+                  type: "string",
+                  enum: ["Linear", "Smooth", "Gaussian"],
+                  description: "Falloff type.",
+                },
+                flat_top: {
+                  type: "number",
+                  description: "Ratio of radius that is flat (0.0-1.0).",
+                },
+                transition: {
+                  type: "number",
+                  description: "Ratio of radius for smooth transition (0.0-1.0).",
+                },
+              },
+              required: ["type", "center", "radius", "intensity", "falloff"],
+            },
+            description: "List of terrain features to add.",
+          },
+        },
+      },
+    },
   }
 ];
