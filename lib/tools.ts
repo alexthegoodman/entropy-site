@@ -327,5 +327,26 @@ export const tools: any[] = [
         },
       },
     },
+  },
+  {
+    type: "function",
+    function: {
+      name: "saveScript",
+      description: "Saves a Rhai script to the project. Useful for creating custom behaviors, dialogues, or interactions.",
+      parameters: {
+        type: "object",
+        properties: {
+          filename: {
+            type: "string",
+            description: "The name of the file, ending in .rhai (e.g., 'npc_interaction.rhai').",
+          },
+          content: {
+            type: "string",
+            description: "The complete Rhai script content.",
+          },
+        },
+        required: ["filename", "content"],
+      },
+    },
   }
 ];

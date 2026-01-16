@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { tools } from '@/lib/tools';
 import OpenAI from 'openai';
+import fs from 'fs';
+import path from 'path';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -47,9 +49,31 @@ export async function POST(request: Request, { params }: { params: Promise<{ ses
             return message;
         });
 
+        // Read existing Rhai scripts
+        let scriptsContext = "";
+        try {
+            // content layer is likely in entropy-site, so we go up one level to entropy-engine
+            // verify path logic depending on deployment, but for local dev:
+            const scriptsDir = path.join(process.cwd(), '../entropy-engine/scripts/examples');
+            if (fs.existsSync(scriptsDir)) {
+                const files = fs.readdirSync(scriptsDir).filter(f => f.endsWith('.rhai'));
+                for (const file of files) {
+                    const content = fs.readFileSync(path.join(scriptsDir, file), 'utf-8');
+                    scriptsContext += `\n\n--- Example Rhai Script: ${file} ---\n${content}\n`;
+                }
+            }
+        } catch (e) {
+            console.error("Failed to read scripts for context", e);
+        }
+
         openaiMessages.unshift({
             role: 'system',
-            content: `You are a helpful assistant for the Entropy Engine. The current state of the project is described in the following JSON object: ${JSON.stringify(savedState, null, 2)}. Use the available tools to modify the project state based on the user's requests.`,
+            content: `You are a helpful assistant for the Entropy Engine. The current state of the project is described in the following JSON object: ${JSON.stringify(savedState, null, 2)}. 
+            
+            You can write Rhai scripts to control behavior. Here are some examples of existing scripts in the project:
+            ${scriptsContext}
+            
+            Use the available tools to modify the project state based on the user's requests.`,
         });
         
         const completion = await openai.chat.completions.create({
