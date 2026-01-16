@@ -190,5 +190,73 @@ export const tools: any[] = [
         required: ["componentId"],
       },
     },
+  },
+  {
+    type: "function",
+    function: {
+      name: "configureGrass",
+      description: "Configures the procedural grass in the scene.",
+      parameters: {
+        type: "object",
+        properties: {
+          wind_strength: {
+            type: "number",
+            description: "Strength of the wind effect. Default is 2.5.",
+          },
+          wind_speed: {
+            type: "number",
+            description: "Speed of the wind animation. Default is 0.3.",
+          },
+          blade_height: {
+            type: "number",
+            description: "Height of the grass blades. Default is 2.75.",
+          },
+          blade_width: {
+            type: "number",
+            description: "Width of the grass blades. Default is 0.03.",
+          },
+          blade_density: {
+            type: "number",
+            description: "Density of the grass blades (blades per grid cell). Default is 15.",
+          },
+          render_distance: {
+            type: "number",
+            description: "Distance at which grass stops rendering. Default is 150.0.",
+          },
+        },
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "spawnPrimitive",
+      description: "Spawns a basic geometric primitive in the scene.",
+      parameters: {
+        type: "object",
+        properties: {
+          type: {
+            type: "string",
+            enum: ["Cube", "Sphere"],
+            description: "The type of primitive to spawn.",
+          },
+          position: {
+            type: "array",
+            items: {
+              type: "number",
+            },
+            description: "The position of the primitive as [x, y, z].",
+          },
+          scale: {
+            type: "array",
+            items: {
+              type: "number",
+            },
+            description: "The scale of the primitive as [x, y, z]. Default is [1, 1, 1].",
+          },
+        },
+        required: ["type", "position"],
+      },
+    },
   }
 ];
