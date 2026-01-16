@@ -352,5 +352,78 @@ export const tools: any[] = [
         required: ["filename", "content"],
       },
     },
+  },
+  {
+    type: "function",
+    function: {
+      name: "configureSky",
+      description: "Configures the procedural sky.",
+      parameters: {
+        type: "object",
+        properties: {
+          horizon_color: {
+            type: "array",
+            items: { type: "number" },
+            description: "Color of the horizon [r, g, b].",
+          },
+          zenith_color: {
+            type: "array",
+            items: { type: "number" },
+            description: "Color of the sky zenith [r, g, b].",
+          },
+          sun_direction: {
+            type: "array",
+            items: { type: "number" },
+            description: "Direction of the sun [x, y, z].",
+          },
+          sun_color: {
+            type: "array",
+            items: { type: "number" },
+            description: "Color of the sun [r, g, b].",
+          },
+          sun_intensity: {
+            type: "number",
+            description: "Intensity of the sun.",
+          },
+        },
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "configureTrees",
+      description: "Configures procedural trees.",
+      parameters: {
+        type: "object",
+        properties: {
+          componentId: {
+            type: "string",
+            description: "The ID of the tree component to configure.",
+          },
+          seed: {
+            type: "number",
+            description: "Random seed for tree generation.",
+          },
+          trunk_height: {
+            type: "number",
+            description: "Height of the tree trunk.",
+          },
+          trunk_radius: {
+            type: "number",
+            description: "Radius of the tree trunk.",
+          },
+          branch_levels: {
+            type: "number",
+            description: "Number of recursion levels for branches.",
+          },
+          foliage_radius: {
+            type: "number",
+            description: "Radius of the foliage clusters.",
+          },
+        },
+        required: ["componentId"],
+      },
+    },
   }
 ];
