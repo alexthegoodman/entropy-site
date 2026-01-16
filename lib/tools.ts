@@ -344,6 +344,10 @@ export const tools: any[] = [
             type: "string",
             description: "The complete Rhai script content.",
           },
+          componentId: {
+            type: "string",
+            description: "Optional: The ID of the component to attach this script to. If provided, the system will update the component's rhai_script_path.",
+          },
         },
         required: ["filename", "content"],
       },
