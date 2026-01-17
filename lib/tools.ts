@@ -535,5 +535,66 @@ export const tools: any[] = [
         required: ["assetId", "type"],
       },
     },
+  },
+  {
+    type: "function",
+    function: {
+      name: "spawnNPC",
+      description: "Spawns an NPC (Non-Player Character) with specific behavior.",
+      parameters: {
+        type: "object",
+        properties: {
+          assetId: {
+            type: "string",
+            description: "The ID of the model asset to use for the NPC.",
+          },
+          position: {
+            type: "array",
+            items: { type: "number" },
+            description: "Position [x, y, z]. Default [0, 0, 0].",
+          },
+          rotation: {
+            type: "array",
+            items: { type: "number" },
+            description: "Rotation [x, y, z] in degrees. Default [0, 0, 0].",
+          },
+          scale: {
+            type: "array",
+            items: { type: "number" },
+            description: "Scale [x, y, z]. Default [1, 1, 1].",
+          },
+          aggressiveness: {
+             type: "number",
+             description: "Aggressiveness level (0.0 to 1.0). Default 0.5.",
+          },
+          combat_type: {
+             type: "string",
+             enum: ["Melee", "Ranged"],
+             description: "Type of combat behavior. Default 'Melee'.",
+          },
+          wander_radius: {
+             type: "number",
+             description: "Radius within which the NPC wanders. Default 10.0.",
+          },
+           wander_speed: {
+             type: "number",
+             description: "Speed while wandering. Default 2.0.",
+          },
+           detection_radius: {
+             type: "number",
+             description: "Radius to detect targets. Default 15.0.",
+          },
+          damage: {
+              type: "number",
+              description: "Damage dealt by attacks. Default 10.0.",
+          },
+           health: {
+              type: "number",
+              description: "Starting health. Default 100.0.",
+          }
+        },
+        required: ["assetId"],
+      },
+    },
   }
 ];
