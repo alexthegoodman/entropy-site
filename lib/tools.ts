@@ -47,7 +47,7 @@ export const tools: any[] = [
         properties: {
           componentId: {
             type: "string",
-            description: "The ID of the water plane component.",
+            description: "Optional: The ID of the water plane component to configure. If omitted, a new water plane may be created.",
           },
           shallow_color: {
             type: "array",
@@ -187,7 +187,6 @@ export const tools: any[] = [
             description: "Direction of the third wave as [x, z]. Default is [0.8, -0.6].",
           },
         },
-        required: ["componentId"],
       },
     },
   },
@@ -199,6 +198,10 @@ export const tools: any[] = [
       parameters: {
         type: "object",
         properties: {
+          componentId: {
+            type: "string",
+            description: "Optional: The ID of the grass component to configure. If omitted, a new grass system may be created.",
+          },
           wind_strength: {
             type: "number",
             description: "Strength of the wind effect. Default is 2.5.",
@@ -267,6 +270,10 @@ export const tools: any[] = [
       parameters: {
         type: "object",
         properties: {
+          componentId: {
+            type: "string",
+            description: "Optional: The ID of the landscape component to configure. If omitted, a new landscape may be created.",
+          },
           seed: {
             type: "number",
             description: "Random seed for the noise generator.",
@@ -361,6 +368,10 @@ export const tools: any[] = [
       parameters: {
         type: "object",
         properties: {
+          componentId: {
+            type: "string",
+            description: "Optional: The ID of the sky component to configure. If omitted, a new sky may be created.",
+          },
           horizon_color: {
             type: "array",
             items: { type: "number" },
@@ -399,7 +410,7 @@ export const tools: any[] = [
         properties: {
           componentId: {
             type: "string",
-            description: "The ID of the tree component to configure.",
+            description: "Optional: The ID of the tree component to configure. If omitted, a new tree system may be created.",
           },
           seed: {
             type: "number",
@@ -422,7 +433,6 @@ export const tools: any[] = [
             description: "Radius of the foliage clusters.",
           },
         },
-        required: ["componentId"],
       },
     },
   },
