@@ -425,5 +425,105 @@ export const tools: any[] = [
         required: ["componentId"],
       },
     },
+  },
+  {
+    type: "function",
+    function: {
+      name: "spawnModel",
+      description: "Spawns a 3D model from the asset library into the scene.",
+      parameters: {
+        type: "object",
+        properties: {
+          assetId: {
+            type: "string",
+            description: "The ID of the model asset to spawn (must exist in project assets).",
+          },
+          position: {
+            type: "array",
+            items: { type: "number" },
+            description: "Position [x, y, z]. Default [0, 0, 0].",
+          },
+          rotation: {
+            type: "array",
+            items: { type: "number" },
+            description: "Rotation [x, y, z] in degrees. Default [0, 0, 0].",
+          },
+          scale: {
+            type: "array",
+            items: { type: "number" },
+            description: "Scale [x, y, z]. Default [1, 1, 1].",
+          },
+        },
+        required: ["assetId"],
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "spawnPointLight",
+      description: "Spawns a point light source in the scene.",
+      parameters: {
+        type: "object",
+        properties: {
+          position: {
+            type: "array",
+            items: { type: "number" },
+            description: "Position [x, y, z].",
+          },
+          color: {
+            type: "array",
+            items: { type: "number" },
+            description: "Color [r, g, b]. Default [1, 1, 1].",
+          },
+          intensity: {
+            type: "number",
+            description: "Light intensity. Default 1.0.",
+          },
+          radius: {
+            type: "number",
+            description: "Maximum range of the light. Default 10.0.",
+          },
+        },
+        required: ["position"],
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "spawnCollectable",
+      description: "Spawns a collectable item (weapon, armor, item) using a 3D model.",
+      parameters: {
+        type: "object",
+        properties: {
+          assetId: {
+            type: "string",
+            description: "The ID of the model asset to use.",
+          },
+          type: {
+            type: "string",
+            enum: ["Item", "MeleeWeapon", "RangedWeapon", "Armor"],
+            description: "The type of collectable.",
+          },
+          position: {
+            type: "array",
+            items: { type: "number" },
+            description: "Position [x, y, z]. Default [0, 0, 0].",
+          },
+          rotation: {
+            type: "array",
+            items: { type: "number" },
+            description: "Rotation [x, y, z] in degrees. Default [0, 0, 0].",
+          },
+          scale: {
+            type: "array",
+            items: { type: "number" },
+            description: "Scale [x, y, z]. Default [1, 1, 1].",
+          },
+        },
+        required: ["assetId", "type"],
+      },
+    },
   }
 ];
