@@ -17,7 +17,7 @@ export async function GET(
   // Construct the file path
   // The user specified: C:\Users\alext\Documents\CommonOS
   const DOCS_PATH = process.env.DOCS_PATH ? process.env.DOCS_PATH : "C:\\Users\\alext\\OneDrive\\Documents";
-  const filePath = path.join(DOCS_PATH, ...pathSegments);
+  const filePath = path.join(DOCS_PATH, "/CommonOS/midpoint/", ...pathSegments);
 
   // Security check: Ensure the resolved path is within the BASE_PATH
   const resolvedPath = path.resolve(filePath);
