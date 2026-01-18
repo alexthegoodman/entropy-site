@@ -492,7 +492,7 @@ export const tools: any[] = [
           },
           radius: {
             type: "number",
-            description: "Maximum range of the light. Default 10.0.",
+            description: "Maximum range of the light. Default 200.0.",
           },
         },
         required: ["position"],
