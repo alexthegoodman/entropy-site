@@ -16,7 +16,10 @@ export async function POST(request: Request) {
 
     // Construct the path: projectPath/landscapes/{assetId}/heightmaps/{filename}
     // Note: projectPath is likely absolute from the engine's perspective.
-    const filePath = path.join(projectPath, 'landscapes', landscapeAssetId, 'heightmaps', filename);
+    const DOCS_PATH = process.env.DOCS_PATH ? process.env.DOCS_PATH : "C:\\Users\\alext\\OneDrive\\Documents";
+    const filePath = path.join(DOCS_PATH, "/CommonOS/midpoint/", projectPath, 'landscapes', landscapeAssetId, 'heightmaps', filename);
+    
+    console.info("save heightmap", projectPath, filePath);
 
     // Ensure directory exists
     const dir = path.dirname(filePath);
