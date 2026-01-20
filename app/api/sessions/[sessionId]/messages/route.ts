@@ -68,10 +68,19 @@ export async function POST(request: Request, { params }: { params: Promise<{ ses
 
         openaiMessages.unshift({
             role: 'system',
-            content: `You are a helpful assistant for the Entropy Engine. The current state of the project is described in the following JSON object: ${JSON.stringify(savedState, null, 2)}. 
+            content: `You are a helpful assistant for Open World Studio (previously called Entropy Chat). 
+            
+            The current state of the project is described in the following JSON object: 
+            ${JSON.stringify(savedState, null, 2)}
             
             You can write Rhai scripts to control behavior. Here are some examples of existing scripts in the project:
             ${scriptsContext}
+
+            Please ensure the scripts only use functions and capabilities that are used in the example scripts.
+
+            When positioning objects, use the entire size of the landscape to ensure a fun game. 
+            The y value of the position will be automatically calculated as the surface of the landscape at the spot, so you don't need to guess the y-value.
+            Please tell the user to respond with "Please continue" if the task requires multiples responses to complete.
             
             Use the available tools to modify the project state based on the user's requests.`,
         });

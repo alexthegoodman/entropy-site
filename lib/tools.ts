@@ -461,7 +461,7 @@ export const tools: any[] = [
           scale: {
             type: "array",
             items: { type: "number" },
-            description: "Scale [x, y, z]. Default [1, 1, 1].",
+            description: "Scale [x, y, z]. Default [1, 1, 1]. Keep scale at 1 unless explicitly requested by the user.",
           },
         },
         required: ["assetId"],
